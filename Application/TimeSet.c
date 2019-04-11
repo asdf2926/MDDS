@@ -93,6 +93,7 @@ BL AETimeSetEventHandler(struct s_AppE *app,const Event *e)
             }
         break;
         case EVENT_REPAINT:
+			LCDClear(0);
             for(i=0;i<17;i++)pp[i]=0;
             for(i=0;i<10;i++)pp[PoiTable[i]]='0'+dat[i];
             pp[4]=pp[7]='/';

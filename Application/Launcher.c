@@ -34,6 +34,7 @@ BL AELauncherEventHandler(struct s_AppE *app,const Event *e)
         case EVENT_KEY:
         break;
         case EVENT_REPAINT:
+			AppERemove(app);
         break;
         case EVENT_TIMER:
         break;

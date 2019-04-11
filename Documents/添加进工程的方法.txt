@@ -1,0 +1,5 @@
+首先新建工程和包含主函数的文件
+拷贝一份conf_template，改成conf，添加进编译的包含目录
+把includes.h加进文件中
+把includes.c加进工程中
+把MDDS_***目录添加进编译的包含目录

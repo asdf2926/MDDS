@@ -21,9 +21,13 @@ void Repaint(const char**MenuStringList,INT8U MenuListCount,INT8U *MenuCurItem,I
 {
     LCDClear(0);
     LCDWriteStringRaw(0,0,FONT_ASCII0816,MenuStringList[*MenuDispIndex]);
+	if(MenuListCount<=1)return;
     LCDWriteStringRaw(2,0,FONT_ASCII0816,MenuStringList[(*MenuDispIndex+1)%MenuListCount]);
+	if(MenuListCount<=2)return;
     LCDWriteStringRaw(4,0,FONT_ASCII0816,MenuStringList[(*MenuDispIndex+2)%MenuListCount]);
+	if(MenuListCount<=3)return;
     LCDWriteStringRaw(6,0,FONT_ASCII0816,MenuStringList[(*MenuDispIndex+3)%MenuListCount]);
+	if(MenuListCount<=4)return;
     LCDWriteCharRaw((*MenuCurItem-*MenuDispIndex<0?*MenuCurItem-*MenuDispIndex+*MenuListCount:*MenuCurItem-*MenuDispIndex)<<1,120,FONT_ASCII0816,'<');
 }
 void IncCursor(const char**MenuStringList,INT8U MenuListCount,INT8U *MenuCurItem,INT8U *MenuDispIndex)
