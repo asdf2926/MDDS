@@ -77,7 +77,9 @@ void AButtonProcess_10ms()
 {
 	INT8U i;
 	AButton r;
+#if BT_EXT_CALLBACK>0
 	ul=ul;
+#endif
 	#if ABUFFON_REFRESH_HOOK_EN>0
 
 

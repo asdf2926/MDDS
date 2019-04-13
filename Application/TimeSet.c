@@ -48,6 +48,7 @@ BL AETimeSetEventHandler(struct s_AppE *app,const Event *e)
             Cursor=0;
         break;
         case EVENT_DESTROY:
+			TIMESET_FINISH_OP
         break;
         case EVENT_POWERPOLICY:
         break;
@@ -94,11 +95,12 @@ BL AETimeSetEventHandler(struct s_AppE *app,const Event *e)
         break;
         case EVENT_REPAINT:
 			LCDClear(0);
-            for(i=0;i<17;i++)pp[i]=0;
+			pp[16]=0;
+            for(i=0;i<16;i++)pp[i]=' ';
             for(i=0;i<10;i++)pp[PoiTable[i]]='0'+dat[i];
             pp[4]=pp[7]='/';
             LCDWriteStringRaw(0,0,FONT_ASCII0816,pp);
-            for(i=0;i<0xd;i++)pp[i]=0;
+            for(i=0;i<0xd;i++)pp[i]=' ';
             for(i=10;i<16;i++)pp[PoiTable[i]]='0'+dat[i];
             pp[2]=pp[5]=':';
             LCDWriteStringRaw(4,0,FONT_ASCII0816,pp);

@@ -49,6 +49,7 @@ typedef struct s_AppE{
 
 void AppEInit(void);
 void AppEAdd(AppE *app,void *extdata);
+void AppEReplace(AppE *app,void *extdata);
 void AppERemove(AppE *app);
 void AppEFocusSet(AppE *app);
 BL AppEEventSent(Event *e);

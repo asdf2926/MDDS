@@ -76,4 +76,7 @@
 #if TFT_EN>0
 #define TFT_INIT_COLOR LIGHTBLUE
 #endif
+//-------------------------Font-------------------------------
+#define FONT_EN 0
+
 #endif /* CONF_EXT_H_ */

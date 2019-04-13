@@ -31,7 +31,7 @@
 #if DAC8411_EN>0
 #include "Driver/DAC8411.c"
 #endif
-#if TFT_EN+LCD_EN>0
+#if FONT_EN>0
 #include "Driver/font0816.c"
 #endif
 #if G2PLATFORM>0

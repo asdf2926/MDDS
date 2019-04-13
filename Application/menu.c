@@ -20,6 +20,7 @@ INT8U MenuListCount,MenuCurItem,MenuDispIndex;
 void Repaint(const char**MenuStringList,INT8U MenuListCount,INT8U *MenuCurItem,INT8U *MenuDispIndex)
 {
     LCDClear(0);
+    LCDWriteCharRaw((*MenuCurItem<*MenuDispIndex?MenuListCount+*MenuCurItem-*MenuDispIndex:*MenuCurItem-*MenuDispIndex)<<1,120,FONT_ASCII0816,'<');
     LCDWriteStringRaw(0,0,FONT_ASCII0816,MenuStringList[*MenuDispIndex]);
 	if(MenuListCount<=1)return;
     LCDWriteStringRaw(2,0,FONT_ASCII0816,MenuStringList[(*MenuDispIndex+1)%MenuListCount]);
@@ -28,23 +29,22 @@ void Repaint(const char**MenuStringList,INT8U MenuListCount,INT8U *MenuCurItem,I
 	if(MenuListCount<=3)return;
     LCDWriteStringRaw(6,0,FONT_ASCII0816,MenuStringList[(*MenuDispIndex+3)%MenuListCount]);
 	if(MenuListCount<=4)return;
-    LCDWriteCharRaw((*MenuCurItem-*MenuDispIndex<0?*MenuCurItem-*MenuDispIndex+*MenuListCount:*MenuCurItem-*MenuDispIndex)<<1,120,FONT_ASCII0816,'<');
 }
 void IncCursor(const char**MenuStringList,INT8U MenuListCount,INT8U *MenuCurItem,INT8U *MenuDispIndex)
 {
-    if(MenuCurItem-MenuDispIndex>=3)
+    if((*MenuCurItem<*MenuDispIndex?MenuListCount+*MenuCurItem-*MenuDispIndex:*MenuCurItem-*MenuDispIndex)>=3)//||(*MenuDispIndex-*MenuCurItem))
     {
-        *MenuDispIndex++;
-        *MenuCurItem++;
+        (*MenuDispIndex)++;
+        (*MenuCurItem)++;
 		*MenuDispIndex%=MenuListCount;
         *MenuCurItem%=MenuListCount;
 		Repaint(MenuStringList,MenuListCount,MenuCurItem,MenuDispIndex);
         return;
     }else{
-        LCDWriteCharRaw((*MenuCurItem-*MenuDispIndex<0?*MenuCurItem-*MenuDispIndex+*MenuListCount:*MenuCurItem-*MenuDispIndex)<<1,120,FONT_ASCII0816,' ');
-        *MenuCurItem++;
+        LCDWriteCharRaw((*MenuCurItem<*MenuDispIndex?MenuListCount+*MenuCurItem-*MenuDispIndex:*MenuCurItem-*MenuDispIndex)<<1,120,FONT_ASCII0816,' ');
+        (*MenuCurItem)++;
         *MenuCurItem%=MenuListCount;
-        LCDWriteCharRaw((*MenuCurItem-*MenuDispIndex<0?*MenuCurItem-*MenuDispIndex+*MenuListCount:*MenuCurItem-*MenuDispIndex)<<1,120,FONT_ASCII0816,'<');
+        LCDWriteCharRaw((*MenuCurItem<*MenuDispIndex?MenuListCount+*MenuCurItem-*MenuDispIndex:*MenuCurItem-*MenuDispIndex)<<1,120,FONT_ASCII0816,'<');
     }
 }
 BL AEMenuEventHandler(struct s_AppE *app,const Event * e)
@@ -54,7 +54,8 @@ BL AEMenuEventHandler(struct s_AppE *app,const Event * e)
     {
         case EVENT_CREATE:
             app->p=e->ExternData;
-			LCDClear(0);
+			curmenu->Status=Idle;
+            LCDClear(0);
         break;
         case EVENT_DESTROY:
 //            Lock=0;
@@ -68,11 +69,11 @@ BL AEMenuEventHandler(struct s_AppE *app,const Event * e)
                     switch(((AButton *)(e->ExternData))->KeyCode)
                     {
                         case VK_F1:
-                            IncCursor(curmenu->MenuStringList,curmenu->MenuListCount,curmenu->MenuCurItem,curmenu->MenuDispIndex);
+                            IncCursor(curmenu->MenuStringList,curmenu->MenuListCount,&(curmenu->MenuCurItem),&(curmenu->MenuDispIndex));
                         break;
                         case VK_F2:
-                            AppERemove(&AppMenu);
-                            (*(curmenu->CB))(curmenu->MenuCurItem);
+                            curmenu->Status=OK;
+                            AppERemove(app);
                         return 1;
                         default:break;
                     }
@@ -82,9 +83,9 @@ BL AEMenuEventHandler(struct s_AppE *app,const Event * e)
                     {
                         case VK_F1:
                             //IncCursor(curmenu->MenuStringList,curmenu->MenuListCount,curmenu->MenuCurItem,curmenu->MenuDispIndex);
+                            LCDClear(0);
                         break;
                         case VK_F2:
-                            LCDClear(0);
                         return 1;
                         default:break;
                     }
@@ -93,13 +94,16 @@ BL AEMenuEventHandler(struct s_AppE *app,const Event * e)
                     {
                         case VK_F1:
                             //IncCursor(curmenu->MenuStringList,curmenu->MenuListCount,curmenu->MenuCurItem,curmenu->MenuDispIndex);
+                            curmenu->Status=Abort;
                             AppERemove(app);
-                            (*(curmenu->CB))(-1);
                         return 1;
                         case VK_F2:
-                        break;
+                            curmenu->Status=OK;
+                            AppERemove(app);
+                        return 1;
                         default:break;
                     }
+					Repaint(curmenu->MenuStringList,curmenu->MenuListCount,&(curmenu->MenuCurItem),&(curmenu->MenuDispIndex));
                 break;
                 default:
 
@@ -107,7 +111,7 @@ BL AEMenuEventHandler(struct s_AppE *app,const Event * e)
             }
         break;
         case EVENT_REPAINT:
-            Repaint(curmenu->MenuStringList,curmenu->MenuListCount,curmenu->MenuCurItem,curmenu->MenuDispIndex);
+            Repaint(curmenu->MenuStringList,curmenu->MenuListCount,&(curmenu->MenuCurItem),&(curmenu->MenuDispIndex));
         break;
         case EVENT_TIMER:
         break;

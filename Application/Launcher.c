@@ -5,19 +5,9 @@ AppE AppLauncher={AELauncherEventHandler};
 const char *AppString[APP_COUNT]={APP_MENU};
 AppE *AppList[APP_COUNT]={APP_STRUCT};
 void menuchosen(INT8S chosen);
-MenuData LauncherData={AppString,menuchosen,APP_COUNT};
+MenuData LauncherData={AppString,APP_COUNT};
 AppE launMenu={AEMenuEventHandler};
 BL en;INT8U index;
-void menuchosen(INT8S chosen)
-{
-    if(chosen>=0)en=1;
-    index=(INT8U)chosen;
-    AppERemove(&AppLauncher);
-    if(en)
-    {
-        AppEAdd(AppList[index],0);
-    }
-}
 BL AELauncherEventHandler(struct s_AppE *app,const Event *e)
 {
     switch(e->Type)
@@ -34,7 +24,9 @@ BL AELauncherEventHandler(struct s_AppE *app,const Event *e)
         case EVENT_KEY:
         break;
         case EVENT_REPAINT:
-			AppERemove(app);
+//			AppERemove(app);
+            if(LauncherData.Status==Abort)AppERemove(&AppLauncher);
+            else if(LauncherData.Status==OK)AppEReplace(AppList[LauncherData.MenuCurItem],0);
         break;
         case EVENT_TIMER:
         break;

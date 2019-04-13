@@ -5,7 +5,7 @@
  *      Author: asdf2
  */
 #include <includes.h>
-#if TFT_EN+LCD_EN>0
+#if FONT_EN>0
 const INT8U ASCII_0816_0x21_0x7E[]=
 {
 

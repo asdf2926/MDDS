@@ -25,7 +25,7 @@
 #define DRIVER_FONT0816_H_
 
 
-#if TFT_EN+LCD_EN>0
+#if FONT_EN>0
 
 
 //字体信息三元组

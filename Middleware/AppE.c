@@ -36,14 +36,27 @@ void AppERemove(AppE *app)
         (*(app->pEventHandler))(app,&e);
 	LINKLIST_REMOVE(s_AppE,app);
 	e.Type=EVENT_REPAINT;
-	(*(ps_AppEFirst->pEventHandler))(ps_AppEFirst,&e);
+ 	if(ps_AppEFirst->pEventHandler)
+		(*(ps_AppEFirst->pEventHandler))(ps_AppEFirst,&e);
 }
-
+void AppEReplace(AppE *app,void *extdata)
+{
+	Event e={EVENT_DESTROY,0};
+	AppTimerStop(ps_AppEFirst);
+ 	if(ps_AppEFirst->pEventHandler)
+        (*(ps_AppEFirst->pEventHandler))(app,&e);
+	LINKLIST_REMOVE(s_AppE,ps_AppEFirst);
+	e.Type=EVENT_REPAINT;
+	AppEAdd(app,extdata);
+}
 void AppEFocusSet(AppE *app)
 {
+	Event e={EVENT_REPAINT,0};
 	if(AppCheck(app))return;
 	LINKLIST_REMOVE(s_AppE,app);
     LINKLIST_ADD_FIRST(s_AppE,app)
+ 	if(app->pEventHandler)
+        (*(app->pEventHandler))(app,&e);
 }
 BL AppEEventSent(Event *e)
 {

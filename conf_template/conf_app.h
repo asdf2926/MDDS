@@ -11,4 +11,5 @@
 #endif
 //--------------------TimeSet------------------
 #define TIMESET_EN 1
+#define TIMESET_FINISH_OP TimeSyncProcess();
 #endif
