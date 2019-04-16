@@ -46,13 +46,20 @@ typedef struct s_AppE{
 #endif
   LINKLIST_STRUCT(s_AppE)
 } AppE;
+typedef struct{
+    AppE *application;
+    void (*act)(AppE *,void *);
+    void *externData;
+}AppEPendAct;
 
 void AppEInit(void);
 void AppEAdd(AppE *app,void *extdata);
 void AppEReplace(AppE *app,void *extdata);
-void AppERemove(AppE *app);
+void AppERemove(AppE *app,void *extdata);
 void AppEFocusSet(AppE *app);
 BL AppEEventSent(Event *e);
+void AppEActionPend(AppE *app,void (*act)(AppE *,void *),void *extdata);
+void AppEPendSolve(void);
 void AppEAButtonCallBack(INT8U key,enum e_KeyStatus state);
 #if BTIMER_COUNT>0
 void AppTimerStart(AppE *app,INT32U TimeUS,BL SingleShot);

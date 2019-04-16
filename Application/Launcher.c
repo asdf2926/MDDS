@@ -14,10 +14,11 @@ BL AELauncherEventHandler(struct s_AppE *app,const Event *e)
     {
         case EVENT_CREATE:
             en=0;
-            AppEAdd(&launMenu,&LauncherData);
+//            AppEAdd(&launMenu,&LauncherData);
+            AppEActionPend(&launMenu,AppEAdd,&LauncherData);
         break;
         case EVENT_DESTROY:
-            if(en==0)AppERemove(&launMenu);
+            if(en==0)AppERemove(&launMenu,0);
         break;
         case EVENT_POWERPOLICY:
         break;
@@ -25,8 +26,8 @@ BL AELauncherEventHandler(struct s_AppE *app,const Event *e)
         break;
         case EVENT_REPAINT:
 //			AppERemove(app);
-            if(LauncherData.Status==Abort)AppERemove(&AppLauncher);
-            else if(LauncherData.Status==OK)AppEReplace(AppList[LauncherData.MenuCurItem],0);
+            if(LauncherData.Status==Abort)AppEActionPend(&AppLauncher,AppERemove,0);//AppERemove(&AppLauncher);
+            else if(LauncherData.Status==OK)AppEActionPend(AppList[LauncherData.MenuCurItem],AppEReplace,0);//AppEReplace(AppList[LauncherData.MenuCurItem],0);
         break;
         case EVENT_TIMER:
         break;

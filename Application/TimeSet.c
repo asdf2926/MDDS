@@ -73,7 +73,7 @@ BL AETimeSetEventHandler(struct s_AppE *app,const Event *e)
                     switch(((AButton *)(e->ExternData))->KeyCode)
                     {
                         case VK_F1:
-                            AppERemove(&AppTimeSet);
+                            AppEActionPend(app,AppERemove,0);//AppERemove(&AppTimeSet);
                         return 1;
                         case VK_F2:
                             j=0;
@@ -84,7 +84,7 @@ BL AETimeSetEventHandler(struct s_AppE *app,const Event *e)
                             }
                             dat[8]=dat[9]=0;
                             RTCTimeRSet(ConventArrayToTime(dat));
-                            AppERemove(&AppTimeSet);
+                            AppEActionPend(app,AppERemove,0);//AppERemove(&AppTimeSet);
                         return 1;
                         default:break;
                     }

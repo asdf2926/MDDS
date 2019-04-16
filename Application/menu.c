@@ -53,7 +53,7 @@ BL AEMenuEventHandler(struct s_AppE *app,const Event * e)
     switch(e->Type)
     {
         case EVENT_CREATE:
-            app->p=e->ExternData;
+            curmenu=app->p=e->ExternData;
 			curmenu->Status=Idle;
             LCDClear(0);
         break;
@@ -73,7 +73,8 @@ BL AEMenuEventHandler(struct s_AppE *app,const Event * e)
                         break;
                         case VK_F2:
                             curmenu->Status=OK;
-                            AppERemove(app);
+                            //AppERemove(app);
+                            AppEActionPend(app,AppERemove,0);
                         return 1;
                         default:break;
                     }
@@ -95,11 +96,13 @@ BL AEMenuEventHandler(struct s_AppE *app,const Event * e)
                         case VK_F1:
                             //IncCursor(curmenu->MenuStringList,curmenu->MenuListCount,curmenu->MenuCurItem,curmenu->MenuDispIndex);
                             curmenu->Status=Abort;
-                            AppERemove(app);
+//                            AppERemove(app);
+                            AppEActionPend(app,AppERemove,0);
                         return 1;
                         case VK_F2:
                             curmenu->Status=OK;
-                            AppERemove(app);
+//                            AppERemove(app);
+                            AppEActionPend(app,AppERemove,0);
                         return 1;
                         default:break;
                     }

@@ -105,6 +105,10 @@ void IdleProcess()
         }
     }
 #endif
+#if APPE_EN>0
+    AppEPendSolve();
+	
+#endif
 }
 
 #if BTIMER_COUNT>0

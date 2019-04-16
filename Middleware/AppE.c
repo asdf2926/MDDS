@@ -1,6 +1,7 @@
 #include "includes.h"
 #if APPE_EN>0
 LINKLIST_MAKE(s_AppE)
+MAKE_BUFFER(AppEPend,AppEPendAct,APPE_PEND_BUF_MAX,INT8U,,)
 void AppEInit()
 {
 	LINKLIST_INIT(s_AppE);
@@ -27,9 +28,9 @@ void AppEAdd(AppE *app,void *extdata)
         (*(app->pEventHandler))(app,&e);
     }
 }
-void AppERemove(AppE *app)
+void AppERemove(AppE *app,void *extdata)
 {
-	Event e={EVENT_DESTROY,0};
+	Event e={EVENT_DESTROY,extdata};
 	if(AppCheck(app))return;
 	AppTimerStop(app);
  	if(app->pEventHandler)
@@ -41,11 +42,13 @@ void AppERemove(AppE *app)
 }
 void AppEReplace(AppE *app,void *extdata)
 {
+	AppE *i;
 	Event e={EVENT_DESTROY,0};
 	AppTimerStop(ps_AppEFirst);
  	if(ps_AppEFirst->pEventHandler)
         (*(ps_AppEFirst->pEventHandler))(app,&e);
-	LINKLIST_REMOVE(s_AppE,ps_AppEFirst);
+	i=ps_AppEFirst;
+	LINKLIST_REMOVE(s_AppE,i);
 	e.Type=EVENT_REPAINT;
 	AppEAdd(app,extdata);
 }
@@ -77,6 +80,18 @@ void AppEAButtonCallBack(INT8U key,enum e_KeyStatus state)
 	Event e={EVENT_KEY,&a};
 	AppEEventSent(&e);
 }
+void AppEActionPend(AppE *app,void (*act)(AppE *,void *),void *extdata)
+{
+	AppEPendAct a={app,act,extdata};
+	BufAppEPendPush(a);
+}
+void AppEPendSolve(void)
+{
+	AppEPendAct a;
+	if(BufAppEPendR(&a,1))return;
+	(*(a.act))(a.application,a.externData);
+}
+
 #if BTIMER_COUNT>0
 void AppTimerStart(AppE *app,INT32U TimeUS,BL SingleShot)
 {

@@ -78,6 +78,7 @@
 #define APPE_EN 1
 #if APPE_EN>0
 #define BT_EXT_CALLBACK 1
+#define APPE_PEND_BUF_MAX 8
 #endif
 
 
