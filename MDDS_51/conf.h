@@ -1,0 +1,1 @@
+#define XTAL_FREQ 11059200UL
