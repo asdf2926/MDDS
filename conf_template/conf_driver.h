@@ -76,7 +76,19 @@
 #if TFT_EN>0
 #define TFT_INIT_COLOR LIGHTBLUE
 #endif
+//------------------------TFT_LTDC----------------------------
+#define LTDC_EN 1
+#if LTDC_EN>0
+#define LTDC_TYPE 0x4342
+#define LCD_PIXFORMAT LCD_PIXEL_FORMAT_RGB565
+//LCD帧缓冲区首地址,这里定义在SDRAM里面.
+#define LCD_FRAME_BUF_ADDR			0XC0000000  
+#endif
 //-------------------------Font-------------------------------
 #define FONT_EN 0
+//-------------------------SDRAM------------------------------
+#define SDRAM_EN 1
+//-------------------------GT9147-----------------------------
+#define GT9147_EN 1
 
 #endif /* CONF_EXT_H_ */

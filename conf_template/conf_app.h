@@ -12,4 +12,6 @@
 //--------------------TimeSet------------------
 #define TIMESET_EN 1
 #define TIMESET_FINISH_OP TimeSyncProcess();
+//--------------------CanvasBasic--------------
+#define CANVASBASIC_EN 1
 #endif

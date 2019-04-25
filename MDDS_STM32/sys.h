@@ -24,6 +24,7 @@ typedef struct{
     INT16U MSec;
 } Time;
 typedef INT64S UTime;
+typedef INT32U Color;
 
 #define _COMB_AB(a,b) __COMB_AB(a,b)//??????????????
 #define __COMB_AB(a,b) a##b

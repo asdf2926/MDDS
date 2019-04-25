@@ -22,9 +22,19 @@ void DriverInit()
 #if DAC8411_EN>0
     DAC8411Init();
 #endif
+#if SDRAM_EN>0
+	extern SDRAM_HandleTypeDef hsdram1;
+    SDRAMInit(&hsdram1);
+#endif
 #if TFT_EN>0
 	TFT_Init();
 	TFT_Clear(TFT_INIT_COLOR);
+#endif
+#if LTDC_EN>0
+    LTDC_Init();
+#endif
+#if GT9147_EN>0
+    GT9147_Init();
 #endif
 }
 

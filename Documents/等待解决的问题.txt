@@ -1,1 +1,3 @@
 将STM32中的IdleProcess,BTimer...更新至MSP430中
+将IdleProcess独立于处理器实现
+将AbstractButton里的回调放到IdleProcess中

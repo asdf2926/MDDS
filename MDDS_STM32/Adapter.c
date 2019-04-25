@@ -7,6 +7,9 @@ extern TIM_HandleTypeDef TIM_INTERFACE;
 void AdapterInit()
 {
 //	hspi_handler=hspi;
+	#ifdef STM32F7
+		SCB->CACR|=1<<2;   //强制D-Cache透写,如不开启,实际使用中可能遇到各种问题	
+	#endif
 	#ifdef TIM_INTERFACE
 	__HAL_TIM_MOE_ENABLE(&TIM_INTERFACE);
 	#endif

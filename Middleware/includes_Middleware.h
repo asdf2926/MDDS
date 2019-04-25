@@ -14,8 +14,11 @@
 #include "Stream.h"
 #include "AbstractButtonAdapt.h"
 #include "LinkedList.h"
+#include "ScreanAbstract.h"
 #include "AppE.h"
 #include "GUI.h"
+#include "Abstract2DInput.h"
+
 #endif /* INCLUDES_MIDDLEWARE_H_ */
 
 

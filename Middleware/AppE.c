@@ -110,6 +110,12 @@ void AppBTimerCallBack(INT8U index)
 	if(ps_AppEFirst->pEventHandler==NULL)return;
     if(ps_AppEFirst->Timer==index)(*(ps_AppEFirst->pEventHandler))(ps_AppEFirst,&e);
 }
+void AInput2DCallBack(AInput2D d)
+{
+	Event e={EVENT_INPUT_2D,&d};
+	AppEEventSent(&e);
+
+}	
 #endif
 
 #endif

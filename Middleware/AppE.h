@@ -5,6 +5,7 @@
 #define EVENT_KEY 1
 #define EVENT_REPAINT 2
 #define EVENT_TIMER 3
+#define EVENT_INPUT_2D 4
 #define EVENT_CREATE 0x80
 #define EVENT_DESTROY 0x81
 #define EVENT_POWERPOLICY 0xC0
@@ -22,6 +23,8 @@ BL AE__Handler(struct s_AppE *app,const Event *e)
         case EVENT_POWERPOLICY:
         break;
         case EVENT_KEY:
+        break;
+        case EVENT_INPUT_2D:
         break;
         case EVENT_REPAINT:
         break;

@@ -34,12 +34,12 @@ void AButtonInit(void);
 AButton AButtonGet(void);
 INT8U AButtonTimeGet(INT8U Key);
 void AButtonCallBackSet(void (*pCallBack)(INT8U,enum e_KeyStatus));
-#if ABUFFON_REFRESH_HOOK_EN>0
 #if BT_EXT_CALLBACK>0
 void AButtonProcess_10ms(INT8U ul);
 #else
 void AButtonProcess_10ms(void);
 #endif
+#if ABUFFON_REFRESH_HOOK_EN>0
 void AButtonRefreshHook(void);
 #endif
 #endif

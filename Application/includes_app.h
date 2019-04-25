@@ -7,3 +7,6 @@
 #if TIMESET_EN>0
 #include "TimeSet.h"
 #endif
+#if CANVASBASIC_EN>0
+#include "CanvasBasic.h"
+#endif
