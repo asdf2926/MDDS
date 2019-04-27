@@ -3,9 +3,13 @@
 void ClearButtonPress(UIData *ui);
 void CloseButtonPress(UIData *ui);
 BL CanvasBasicEventHandler(struct s_AppE *app,const Event *e);
+
+
 UICanvasData AECBCanvas1={7,WHITE,BLACK};
 UIButtonData AECBButtonClear={"Clear",BLACK,LGRAYBLUE,LBBLUE,ClearButtonPress};
 UIButtonData AECBButtonClose={"Close",BLACK,LGRAYBLUE,LBBLUE,CloseButtonPress};
+
+
 UIData AppCanvasBasicUI[]={
     {UIButtonEventHandler,0,0,65,24,&AECBButtonClear},
     {UICanvasEventHandler,0,24,272,480-24,&AECBCanvas1},
@@ -44,6 +48,10 @@ BL CanvasBasicEventHandler(struct s_AppE *app,const Event *e)
         case EVENT_REPAINT:
         break;
         case EVENT_TIMER:
+        break;
+        case EVENT_FOCUS:
+        break;
+        case EVENT_LOSTFOCUS:
         break;
         default:
         return 0;

@@ -39,4 +39,13 @@
 #define AINPUT2D_DPI_X 10
 #define AINPUT2D_BUFFER_LEN 25
 #endif
+//----------------AbstractVariable--------------
+#define AVARIABLE_EN 1
+#if AVARIABLE_EN>0
+#define AVARIABLE_INT8U_NUM 0
+#define AVARIABLE_INT16U_NUM 1
+#define AVARIABLE_FLOAT_NUM 4
+
+#endif
+
 #endif /* MIDDLEWARE_CONF_MIDDLEWARE_H_ */

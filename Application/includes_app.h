@@ -10,3 +10,6 @@
 #if CANVASBASIC_EN>0
 #include "CanvasBasic.h"
 #endif
+#if APPENDLAYER_EN>0
+#include "AppendLayer.h"
+#endif

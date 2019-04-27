@@ -1,0 +1,16 @@
+#ifndef _ABStRACT_VARIABLE_H
+#define _ABStRACT_VARIABLE_H
+#if AVARIABLE_EN>0
+#if AVARIABLE_INT8U_NUM>0
+extern INT8U AVariableINT8U[AVARIABLE_INT8U_NUM];
+#endif
+#if AVARIABLE_INT16U_NUM>0
+extern INT16U AVariableINT16U[AVARIABLE_INT16U_NUM];
+#endif
+#if AVARIABLE_FLOAT_NUM>0
+extern float AVariableFloat[AVARIABLE_FLOAT_NUM];
+#endif
+
+#endif
+
+#endif

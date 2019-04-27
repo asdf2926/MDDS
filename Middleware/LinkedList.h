@@ -19,6 +19,17 @@
     p##STRUCT_NAME##First=DATA;             \
     if(p##STRUCT_NAME##Last==NULL)p##STRUCT_NAME##Last=DATA;
 
+#define LINKLIST_INSERT_FRONT(STRUCT_NAME,DATA,POS) \
+    if(p##STRUCT_NAME##First==POS)   \
+    {                       \
+        LINKLIST_ADD_FIRST(STRUCT_NAME,DATA)\
+    }else{                  \
+        DATA->Next=POS;          \
+        DATA->Prev=POS->Prev;\
+        POS->Prev->Next=DATA;\
+        POS->Prev=DATA;\
+    }                       
+
 
 
 #define LINKLIST_REMOVE(STRUCT_NAME,DATA) \

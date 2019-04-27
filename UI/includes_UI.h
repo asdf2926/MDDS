@@ -2,3 +2,4 @@
 
 #include "UIButton.h"
 #include "UICanvas.h"
+#include "UILabel.h"

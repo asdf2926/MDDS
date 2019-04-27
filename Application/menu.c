@@ -116,6 +116,10 @@ BL AEMenuEventHandler(struct s_AppE *app,const Event * e)
         case EVENT_REPAINT:
             Repaint(curmenu->MenuStringList,curmenu->MenuListCount,&(curmenu->MenuCurItem),&(curmenu->MenuDispIndex));
         break;
+        case EVENT_FOCUS:
+        break;
+        case EVENT_LOSTFOCUS:
+        break;
         case EVENT_TIMER:
         break;
         default:

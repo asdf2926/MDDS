@@ -3,6 +3,7 @@
 
 #include <stddef.h>
 #include <string.h>
+#include <stdio.h>
 #include "sys.h"
 #include "conf.h"
 #include "conf_driver.h"

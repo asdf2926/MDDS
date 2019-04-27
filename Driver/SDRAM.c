@@ -3,6 +3,7 @@
 //发送SDRAM初始化序列
 void SDRAMInit(SDRAM_HandleTypeDef *hsdram)
 {
+    #if 0
 	FMC_SDRAM_TimingTypeDef SDRAM_Timing;
                                                      
     hsdram->Instance=FMC_SDRAM_DEVICE;                                  //SDRAMÔÚBANK5,6  
@@ -25,7 +26,7 @@ void SDRAMInit(SDRAM_HandleTypeDef *hsdram)
     SDRAM_Timing.RPDelay=2;                                             //ÐÐÔ¤³äµçÑÓ³ÙÎª2¸öÊ±ÖÓÖÜÆÚ
     SDRAM_Timing.RCDDelay=2;                                            //ÐÐµ½ÁÐÑÓ³ÙÎª2¸öÊ±ÖÓÖÜÆÚ
     HAL_SDRAM_Init(hsdram,&SDRAM_Timing);  
-
+    #endif
 	INT32U temp=0;
     //SDRAM控制器初始化完成以后还需要按照如下顺序初始化SDRAM
     SDRAM_Send_Cmd(0,FMC_SDRAM_CMD_CLK_ENABLE,1,0,hsdram); //时钟配置使能

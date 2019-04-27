@@ -18,7 +18,7 @@
 #include "AppE.h"
 #include "GUI.h"
 #include "Abstract2DInput.h"
-
+#include "AbstractVariable.h"
 #endif /* INCLUDES_MIDDLEWARE_H_ */
 
 

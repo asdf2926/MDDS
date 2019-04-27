@@ -1,0 +1,13 @@
+#include "includes.h"
+#if AVARIABLE_EN>0
+#if AVARIABLE_INT8U_NUM>0
+INT8U AVariableINT8U[AVARIABLE_INT8U_NUM];
+#endif
+#if AVARIABLE_INT16U_NUM>0
+INT16U AVariableINT16U[AVARIABLE_INT16U_NUM];
+#endif
+#if AVARIABLE_FLOAT_NUM>0
+float AVariableFloat[AVARIABLE_FLOAT_NUM];
+#endif
+
+#endif

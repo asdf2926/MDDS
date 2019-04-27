@@ -33,6 +33,9 @@
 #if AINPUT2D_EN>0
 #include "Middleware/Abstract2DInput.c"
 #endif
+#if AVARIABLE_EN>0
+#include "Middleware/AbstractVariable.c"
+#endif
 //--------------------------diver------------------------------
 #include "Driver/Driver.c"
 #if DAC8411_EN>0
@@ -86,6 +89,9 @@
 #if CANVASBASIC_EN>0
 #include "Application/CanvasBasic.c"
 #endif
+#if APPENDLAYER_EN>0
+#include "Application/AppendLayer.c"
+#endif
 //--------------------------UI--------------------------------
 #if UI_EN>0
 #include "UI/UI.c"
@@ -97,6 +103,10 @@
 #endif
 #if UICANVAS_EN>0
 #include "UI/UICanvas.c"
+
+#endif
+#if UILABEL_EN>0
+#include "UI/UILabel.c"
 
 #endif
 #endif

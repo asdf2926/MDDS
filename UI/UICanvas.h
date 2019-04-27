@@ -5,6 +5,7 @@ typedef struct{
     INT8U PenSize;
     Color BackColor;
     Color PenColor;
+    
     INT16U lx;
     INT16U ly;
 } UICanvasData;

@@ -1,14 +1,19 @@
 #ifndef _APPE_H
 #define _APPE_H
 //#if APPE_EN>0
-
+//any app
 #define EVENT_KEY 1
-#define EVENT_REPAINT 2
-#define EVENT_TIMER 3
 #define EVENT_INPUT_2D 4
+//only on focus app
 #define EVENT_CREATE 0x80
 #define EVENT_DESTROY 0x81
-#define EVENT_POWERPOLICY 0xC0
+#define EVENT_FOCUS 0x82
+#define EVENT_LOSTFOCUS 0x83
+
+#define EVENT_REPAINT 0xC0
+#define EVENT_TIMER 0xC1
+//not used
+#define EVENT_POWERPOLICY 0xE0
 /*
 BL AE__Handler(struct s_AppE *app,const Event *e);
 AppE App__={AE__Handler};
@@ -29,6 +34,10 @@ BL AE__Handler(struct s_AppE *app,const Event *e)
         case EVENT_REPAINT:
         break;
         case EVENT_TIMER:
+        break;
+        case EVENT_FOCUS:
+        break;
+        case EVENT_LOSTFOCUS:
         break;
         default:
         return 0;
@@ -57,9 +66,12 @@ typedef struct{
 
 void AppEInit(void);
 void AppEAdd(AppE *app,void *extdata);
+//注意：最底层应用不支持
 void AppEReplace(AppE *app,void *extdata);
 void AppERemove(AppE *app,void *extdata);
 void AppEFocusSet(AppE *app);
+void AppESetOnTop(void);
+
 BL AppEEventSent(Event *e);
 void AppEActionPend(AppE *app,void (*act)(AppE *,void *),void *extdata);
 void AppEPendSolve(void);

@@ -107,6 +107,7 @@ void BasicTimerTick(void);
 
 Time RTCTimeRGet(void);
 void RTCTimeRSet(Time t);
+INT16U GetTemp(INT16U vtemp);
 
 #endif
 

@@ -375,3 +375,28 @@ void RTCTimeRSet(Time t)
   HAL_RTC_SetDate(&RTC_INTERFACE, &sdatestructureget, RTC_FORMAT_BIN);
 	#endif
 }
+#ifdef STM32F0
+#define TEMP110_CAL_ADDR ((uint16_t*) ((uint32_t) 0x1FFFF7C2))
+#define TEMP30_CAL_ADDR ((uint16_t*) ((uint32_t) 0x1FFFF7B8))
+#define VREFINT_CAL ((uint16_t*) ((uint32_t) 0x1FFFF7BA))
+#define VDD_CALIB ((uint16_t) (330))
+#else
+#ifdef STM32F7
+#define TEMP110_CAL_ADDR ((uint16_t*) ((uint32_t) 0x1FF0F44E))
+#define TEMP30_CAL_ADDR ((uint16_t*) ((uint32_t) 0x1FF0F44C))
+#define VREFINT_CAL ((uint16_t*) ((uint32_t) 0x1FF0F44A))
+
+#endif
+#endif
+//
+INT16U GetTemp(INT16U vtemp)
+{
+//	u32 adcx;
+	INT16U result;
+ 	double temperate;
+	temperate=(float)vtemp*(3.3/4096);		//电压值
+	temperate=(temperate-0.76)/0.0025 + 25; //转换为温度值 
+	result=temperate*=100;					//扩大100倍.
+	return result;
+}
+

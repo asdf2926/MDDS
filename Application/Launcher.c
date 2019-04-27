@@ -31,6 +31,10 @@ BL AELauncherEventHandler(struct s_AppE *app,const Event *e)
         break;
         case EVENT_TIMER:
         break;
+        case EVENT_FOCUS:
+        break;
+        case EVENT_LOSTFOCUS:
+        break;
         default:
         return 0;
     }
