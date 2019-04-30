@@ -59,7 +59,17 @@
 
 #define LINKLIST_FOREACH_BACK(VAL,STRUCT_NAME) for(VAL=p##STRUCT_NAME##Last;VAL!=NULL;VAL=VAL->Prev)
 
+#define LINKLINTLOOP_INSERT_BACK(STRUCT_NAME,DATA,POS) \
+    DATA->Next=POS->Next;\
+    DATA->Prev=POS;\
+    POS->Next->Prev=DATA;\
+    POS->Next=DATA;
 
+#define LINKLINTLOOP_INSERT_FRONT(STRUCT_NAME,DATA,POS) \
+    DATA->Next=POS;\
+    DATA->Prev=POS->Prev;\
+    POS->Prev->Next=DATA;\
+    POS->Prev=DATA;
 
 #endif
 

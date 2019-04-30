@@ -204,7 +204,7 @@ void ScrStringWrite(INT16U x,INT16U y,INT16U w,INT16U h,const char *dat,BL mode)
     {       
         if((x>=w)||(*dat=='\n')){x=x0;y+=ScrFontHeightPage;dat++;continue;}
         if(y>=h)break;//退出
-        ScrCharWrite(x,y,*dat,0);
+        ScrCharWrite(x,y,*dat,mode);
         x+=ScrFontWidth;
         dat++;
     }  

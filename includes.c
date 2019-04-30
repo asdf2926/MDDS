@@ -75,7 +75,20 @@
 #include "Driver/GT9147.c"
 #endif
 //--------------------------SOCDriver-------------------------
+#ifdef PLATFORM_STM32
 #include "MDDS_STM32/Adapter.c"
+#endif
+#ifdef PLATFORM_MSP430G2
+#include "ADC.c"
+#include "basic_timer.c"
+#include "DMA.c"
+#include "gpio.c"
+#include "rcc.c"
+#include "rtc.c"
+#include "sys.c"
+#include "timer.c"
+#include "USCI.c"
+#endif
 //--------------------------Application-----------------------
 #if APP_MENU_EN>0
 #include "Application/menu.c"
