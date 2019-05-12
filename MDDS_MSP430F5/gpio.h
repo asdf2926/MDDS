@@ -436,6 +436,61 @@ extern void GPIO_setAsPeripheralModuleFunctionInputPin(uint8_t selectedPort,
 //*****************************************************************************
 extern void GPIO_setOutputHighOnPin(uint8_t selectedPort,
                                     uint16_t selectedPins);
+//*****************************************************************************
+//
+//! \brief This function sets output on the selected Pin
+//!
+//! This function sets output on the selected port's pin.
+//!
+//! \param selectedPort is the selected port.
+//!        Valid values are:
+//!        - \b GPIO_PORT_P1
+//!        - \b GPIO_PORT_P2
+//!        - \b GPIO_PORT_P3
+//!        - \b GPIO_PORT_P4
+//!        - \b GPIO_PORT_P5
+//!        - \b GPIO_PORT_P6
+//!        - \b GPIO_PORT_P7
+//!        - \b GPIO_PORT_P8
+//!        - \b GPIO_PORT_P9
+//!        - \b GPIO_PORT_P10
+//!        - \b GPIO_PORT_P11
+//!        - \b GPIO_PORT_PA
+//!        - \b GPIO_PORT_PB
+//!        - \b GPIO_PORT_PC
+//!        - \b GPIO_PORT_PD
+//!        - \b GPIO_PORT_PE
+//!        - \b GPIO_PORT_PF
+//!        - \b GPIO_PORT_PJ
+//! \param selectedPins is the specified pin in the selected port.
+//!        Mask value is the logical OR of any of the following:
+//!        - \b GPIO_PIN0
+//!        - \b GPIO_PIN1
+//!        - \b GPIO_PIN2
+//!        - \b GPIO_PIN3
+//!        - \b GPIO_PIN4
+//!        - \b GPIO_PIN5
+//!        - \b GPIO_PIN6
+//!        - \b GPIO_PIN7
+//!        - \b GPIO_PIN8
+//!        - \b GPIO_PIN9
+//!        - \b GPIO_PIN10
+//!        - \b GPIO_PIN11
+//!        - \b GPIO_PIN12
+//!        - \b GPIO_PIN13
+//!        - \b GPIO_PIN14
+//!        - \b GPIO_PIN15
+//!        - \b GPIO_PIN_ALL8
+//!        - \b GPIO_PIN_ALL16
+//! \param Status
+//! Modified bits of \b PxOUT register.
+//!
+//! \return None
+//
+//*****************************************************************************
+void GPIOWritePin(uint8_t selectedPort,
+                  uint16_t selectedPins,
+                  BL Status);
 
 //*****************************************************************************
 //

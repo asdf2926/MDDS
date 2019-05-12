@@ -7,6 +7,7 @@
 #ifndef INCLUDES_MIDDLEWARE_H_
 #define INCLUDES_MIDDLEWARE_H_
 #include "Middleware.h"
+#include "basic_timer.h"
 #include "RouteBuffer.h"
 #include "LinkedList.h"
 #include "keycode.h"

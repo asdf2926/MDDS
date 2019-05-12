@@ -21,5 +21,6 @@
 #include "TFT.h"
 #include "TFT_LTDC.h"
 #include "SDRAM.h"
+#include "TFT_ILI9341.h"
 
 #endif /* DRIVER_INCLUDES_DRIVER_H_ */

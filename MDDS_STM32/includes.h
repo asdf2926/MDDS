@@ -1,6 +1,6 @@
 #ifndef INCLUDES_H_
 #define INCLUDES_H_
-
+#define PLATFORM_STM32
 #include <stddef.h>
 #include <string.h>
 #include <stdio.h>

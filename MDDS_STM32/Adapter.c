@@ -13,7 +13,6 @@ void AdapterInit()
 	#ifdef TIM_INTERFACE
 	__HAL_TIM_MOE_ENABLE(&TIM_INTERFACE);
 	#endif
-	BasicTimerInit();
 	DriverInit();
 	
 	MiddlewareInit();
@@ -76,37 +75,7 @@ void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
 void IdleProcess()
 {
 #if BTIMER_COUNT>0
-    INT8U i;
-    for(i=0;i<BTIMER_COUNT;i++)
-    {
-        if(BasicTimer[i].CallBack)
-        {
-            if(BasicTimer[i].CallCount==-1)
-            {
-                if(BasicTimer[i].CurTime==0)
-                {
-    #if BT_EXT_CALLBACK>0
-                    (*BasicTimer[i].CallBack)(i);
-    #else
-                    (*BasicTimer[i].CallBack)();
-    #endif
-                    BasicTimer[i].CallBack=0;
-                }
-            }else{
-                while(BasicTimer[i].CallCount!=0)
-                {
-    #if BT_EXT_CALLBACK>0
-                    (*BasicTimer[i].CallBack)(i);
-    #else
-                    (*BasicTimer[i].CallBack)();
-    #endif
-                    BasicTimer[i].CallCount--;
-                }
-
-            }
-
-        }
-    }
+    BasicTimerProcess();
 #endif
 #if APPE_EN>0
     AppEPendSolve();
@@ -114,7 +83,7 @@ void IdleProcess()
 #endif
 }
 
-#if BTIMER_COUNT>0
+#if 0
 INT8S pBasicTimer;
 s_BasicTimer BasicTimer[BTIMER_COUNT];
 //???

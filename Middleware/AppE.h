@@ -1,6 +1,6 @@
 #ifndef _APPE_H
 #define _APPE_H
-//#if APPE_EN>0
+#if APPE_EN>0
 //any app
 #define EVENT_KEY 1
 #define EVENT_INPUT_2D 4
@@ -66,7 +66,7 @@ typedef struct{
 
 void AppEInit(void);
 void AppEAdd(AppE *app,void *extdata);
-//×¢Òâ£º×îµ×²ãÓ¦ÓÃ²»Ö§³Ö
+//×¢ï¿½â£ºï¿½ï¿½×²ï¿½Ó¦ï¿½Ã²ï¿½Ö§ï¿½ï¿½
 void AppEReplace(AppE *app,void *extdata);
 void AppERemove(AppE *app,void *extdata);
 void AppEFocusSet(AppE *app);
@@ -81,6 +81,6 @@ void AppTimerStart(AppE *app,INT32U TimeUS,BL SingleShot);
 void AppTimerStop(AppE *app);
 void AppBTimerCallBack(INT8U index);
 #endif
-//#endif
+#endif
 
 #endif

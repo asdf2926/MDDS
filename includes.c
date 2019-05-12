@@ -36,6 +36,9 @@
 #if AVARIABLE_EN>0
 #include "Middleware/AbstractVariable.c"
 #endif
+#if BTIMER_COUNT>0
+#include "Middleware/basic_timer.c"
+#endif
 //--------------------------diver------------------------------
 #include "Driver/Driver.c"
 #if DAC8411_EN>0
@@ -74,6 +77,9 @@
 #if GT9147_EN>0
 #include "Driver/GT9147.c"
 #endif
+#if TFT_ILI9341_EN>0
+#include "Driver/TFT_ILI9341.c"
+#endif
 //--------------------------SOCDriver-------------------------
 #ifdef PLATFORM_STM32
 #include "MDDS_STM32/Adapter.c"
@@ -88,6 +94,9 @@
 #include "sys.c"
 #include "timer.c"
 #include "USCI.c"
+#endif
+#ifdef PLATFORM_MSP430F5
+#include "MDDS_MSP430F5/includes_SOCDriver.c"
 #endif
 //--------------------------Application-----------------------
 #if APP_MENU_EN>0

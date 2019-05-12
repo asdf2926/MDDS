@@ -138,6 +138,26 @@ static const uint16_t GPIO_PORT_TO_BASE[] = {
 #endif
 };
 
+void GPIOWritePin(uint8_t selectedPort,
+                  uint16_t selectedPins,
+                  BL Status) {
+
+    uint16_t baseAddress = GPIO_PORT_TO_BASE[selectedPort];
+
+    #ifndef NDEBUG
+    if(baseAddress == 0xFFFF) {
+        return;
+    }
+    #endif
+
+    // Shift by 8 if port is even (upper 8-bits)
+    if((selectedPort & 1) ^ 1) {
+        selectedPins <<= 8;
+    }
+
+    Status?(HWREG16(baseAddress + OFS_PAOUT) |= selectedPins):(HWREG16(baseAddress + OFS_PAOUT) &= ~selectedPins);
+}
+
 void GPIO_setAsOutputPin(uint8_t selectedPort, uint16_t selectedPins) {
 
     uint16_t baseAddress = GPIO_PORT_TO_BASE[selectedPort];

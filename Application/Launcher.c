@@ -1,4 +1,5 @@
 #include "includes.h"
+#if APP_LAUNCHER_EN>0
 BL AELauncherEventHandler(struct s_AppE *app,const Event *e);
 AppE AppLauncher={AELauncherEventHandler};
 
@@ -26,8 +27,8 @@ BL AELauncherEventHandler(struct s_AppE *app,const Event *e)
         break;
         case EVENT_REPAINT:
 //			AppERemove(app);
-            if(LauncherData.Status==Abort)AppEActionPend(&AppLauncher,AppERemove,0);//AppERemove(&AppLauncher);
-            else if(LauncherData.Status==OK)AppEActionPend(AppList[LauncherData.MenuCurItem],AppEReplace,0);//AppEReplace(AppList[LauncherData.MenuCurItem],0);
+            if(LauncherData.Status==AppMenuAbort)AppEActionPend(&AppLauncher,AppERemove,0);//AppERemove(&AppLauncher);
+            else if(LauncherData.Status==AppMenuOK)AppEActionPend(AppList[LauncherData.MenuCurItem],AppEReplace,0);//AppEReplace(AppList[LauncherData.MenuCurItem],0);
         break;
         case EVENT_TIMER:
         break;
@@ -41,5 +42,5 @@ BL AELauncherEventHandler(struct s_AppE *app,const Event *e)
     return 1;
 
 }
-
+#endif
 

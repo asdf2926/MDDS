@@ -66,7 +66,7 @@ void UARTWriteByte(INT8U dat);
 void UARTWaitTransmit(void);
 #endif
 void IdleProcess(void);
-#if BTIMER_COUNT>0
+#if 0
 
 typedef struct{
     #if BT_EXT_CALLBACK>0

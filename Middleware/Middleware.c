@@ -11,7 +11,9 @@ void MiddlewareInit()
 	GUIInit();
 
 	#endif
-
+	#if BTIMER_COUNT>0
+	BasicTimerInit();
+	#endif
 	#if ABUTTON_EN>0
 	AButtonInit();
 	

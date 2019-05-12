@@ -36,6 +36,9 @@ void DriverInit()
 #if GT9147_EN>0
     GT9147_Init();
 #endif
+#if TFT_ILI9341_EN>0
+    ILI9341_INITIAL();
+#endif
 }
 
 void DriverDeInit()

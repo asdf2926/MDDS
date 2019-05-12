@@ -1,0 +1,16 @@
++conf_UI.h
+-UI_EN
+--Description:
+--Value:1
+-TESTBROWSER_EN
+--Description:
+--Value:1
+-UIBUTTON_EN
+--Description:
+--Value:1
+-UICANVAS_EN
+--Description:
+--Value:1
+-UILABEL_EN
+--Description:
+--Value:1

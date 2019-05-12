@@ -20,6 +20,15 @@ void ScrClear()
 
 #elif LTDC_EN>0
     LTDC_Clear(ScrBackColor);
+#elif TFT_ILI9341_EN>0
+	INT32U index=0;      
+	INT32U totalpoint=LCD_MAX_HEIGHT*LCD_MAX_WIDTH;
+	Draw_Pos_Size(0, 0, LCD_MAX_HEIGHT, LCD_MAX_WIDTH);
+	LCD_WriteCommand(0x2C);
+	for(index=0;index<totalpoint;index++)
+	{
+		LCD_Write_Data(ScrBackColor);		   			  
+	}
 #endif
 }
 void ScrColorSet(Color Front,Color Back)
@@ -127,6 +136,16 @@ void ScrFill(INT16U x,INT16U y,INT16U w,INT16U h)
 
     #elif LTDC_EN>0
     LTDC_Fill(x,y,w+x-1,h+y-1,ScrFrontColor);
+	#elif TFT_ILI9341_EN>0	
+	INT32U index=0;      
+	INT32U totalpoint=w*h;
+	Draw_Pos_Size(x,y, w, h);
+	LCD_WriteCommand(0x2C);
+	for(index=0;index<totalpoint;index++)
+	{
+		LCD_Write_Data(ScrFrontColor);		   			  
+	}
+	
     #endif
 }
 
@@ -146,6 +165,16 @@ void ScrImageWrite(INT16U x,INT16U y,INT16U w,INT16U h,Color *d)
 	}	  
     #elif LTDC_EN>0
     LTDC_Color_Fill(x,y,w+x-1,h+y-1,d);
+	#elif TFT_ILI9341_EN>0
+	INT32U index=0;      
+	INT32U totalpoint=w*h;
+	Draw_Pos_Size(x,y, w, h);
+	LCD_WriteCommand(0x2C);
+	for(index=0;index<totalpoint;index++)
+	{
+		LCD_Write_Data(*d++);		   			  
+	}
+	
 
    #endif
 }
@@ -185,7 +214,6 @@ void ScrCharWrite(INT16U x,INT16U y,const char dat,BL mode)
 			
 	    }   
 	return;
-
 }
 //显示字符串
 //INT16U x,INT16U y:起点坐标

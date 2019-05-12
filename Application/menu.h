@@ -4,7 +4,7 @@
 typedef struct{
     const char**MenuStringList;
     INT8U MenuListCount,MenuCurItem,MenuDispIndex;
-    enum{Idle,Abort,OK}Status;
+    enum{AppMenuIdle,AppMenuAbort,AppMenuOK}Status;
 }MenuData;
 extern AppE AppMenu;
 //void AEMenuStart(const char*dat[],INT8U MenuCount,void (*CallBack)(INT8S chosen));
